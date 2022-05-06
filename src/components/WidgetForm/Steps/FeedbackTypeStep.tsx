@@ -11,21 +11,28 @@ export function FeedbackTypeStep({
   return (
     <>
       <header>
-        <span className="text-xl leading-6">Deixe seu feedback</span>
+        <span className="text-xl leading-6 select-none">
+          Deixe seu feedback
+        </span>
+
         <CloseButton />
       </header>
 
-      <div className="flex w-full gap-2 py-8">
+      <div className="flex w-full gap-2 py-8 select-none">
         {Object.entries(feedbackTypes).map(([key, value]) => {
           return (
             <button
-              className="flex flex-col items-center flex-1 w-24 gap-2 py-5 border-transparent rounded-lg bg-zinc-800 hover:border-brand-500 focus:border-brand-500"
+              key-={key}
+              className="flex-col items-center flex-1 w-24 gap-2 py-5 border-2 border-transparent rounded-lg bg-zinc-800 hover:border-brand-500 focus:border-brand-500 focus:outline-none"
               onClick={() => onFeedbackTypeChanged(key as FeedbackType)}
               type="button"
-              key={key}
             >
+              <img
+                className="m-auto"
+                src={value.image.source}
+                alt={value.image.alt}
+              />
               <span>{value.title}</span>
-              <img src={value.image.source} alt={value.image.alt} />
             </button>
           );
         })}
